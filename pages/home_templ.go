@@ -39,14 +39,14 @@ func Home(name string) templ.Component {
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("!</title><link rel=\"stylesheet\" href=\"/pages/home/home.css\"></head><div><h1>Hello, ")
+		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("!</title></head><div><h1>Hello, ")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var3 string
 		templ_7745c5c3_Var3, templ_7745c5c3_Err = templ.JoinStringErrs(name)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pages/home.templ`, Line: 10, Col: 24}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `pages/home.templ`, Line: 9, Col: 24}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var3))
 		if templ_7745c5c3_Err != nil {

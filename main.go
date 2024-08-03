@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"net/http"
 
 	"github.com/a-h/templ/examples/integration-gin/gintemplrenderer"
@@ -42,8 +43,29 @@ func main() {
 		c.HTML(http.StatusOK, "Home", layout(pages.Home("Mitchell")))
 	})
 
-	router.GET("/blog", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "Blog", layout(pages.Blog("Mudd Blog")))
+	router.GET("/blogs", func(c *gin.Context) {
+	
+		
+		var typeOfBlog = c.Query("type")
+
+		//output typeOfBlog to console
+		fmt.Println(typeOfBlog)	
+
+		if (typeOfBlog != "activism" && typeOfBlog != "programming") {
+			c.HTML(http.StatusOK, "Blog", layout(pages.NotFound()))	
+		} else {
+			c.HTML(http.StatusOK, "Blog", layout(pages.Blogs(typeOfBlog)))
+		}
+
+		
+	})
+
+	router.GET("/projects", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Projects", layout(pages.Projects()))
+	})
+
+	router.GET("/skills", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Skills", layout(pages.Skills()))
 	})
 
 	router.GET("/albums", getAlbums)
