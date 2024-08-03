@@ -1,0 +1,24 @@
+package pages
+
+templ Layout(contents templ.Component) {
+    <html>
+        <head>
+            <title>Templ</title>
+            <link rel="stylesheet" href="/pages/layout/layout.css">
+        </head>
+        <body>
+            <header>
+                <nav>
+                    <a href="/">Home</a>
+                    <a href="/blog">Blog</a>
+                </nav>
+            </header>
+            <main>
+                @contents
+            </main>
+            <footer>
+                <p>© 2021 Templ</p>
+            </footer>
+        </body>
+    </html>
+}

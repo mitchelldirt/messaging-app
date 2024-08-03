@@ -1,4 +1,4 @@
-module Go/messaging-app
+module github.com/mitchelldirt/messaging-app
 
 go 1.22.5
 

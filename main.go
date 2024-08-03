@@ -5,6 +5,7 @@ import (
 
 	"github.com/a-h/templ/examples/integration-gin/gintemplrenderer"
 	"github.com/gin-gonic/gin"
+	"github.com/mitchelldirt/messaging-app/pages"
 )
 
 // album represents data about a record album.
@@ -22,19 +23,27 @@ var albums = []album{
     {ID: "3", Title: "Sarah Vaughan and Clifford Brown", Artist: "Sarah Vaughan", Price: 39.99},
 }
 
+var layout = pages.Layout
+
 func main() {
 	router := gin.Default()
-	router.LoadHTMLFiles("./home.html")
-
-
+	
 	ginHtmlRenderer := router.HTMLRender
 	router.HTMLRender = &gintemplrenderer.HTMLTemplRenderer{FallbackHtmlRenderer: ginHtmlRenderer}
+
 
 	// Disable trusted proxy warning.
 	router.SetTrustedProxies(nil)
 
+	// load layout
+
+
 	router.GET("/", func(c *gin.Context) {
-		c.HTML(http.StatusOK, "", hello("Mitchell"))
+		c.HTML(http.StatusOK, "Home", layout(pages.Home("Mitchell")))
+	})
+
+	router.GET("/blog", func(c *gin.Context) {
+		c.HTML(http.StatusOK, "Blog", layout(pages.Blog("Mudd Blog")))
 	})
 
 	router.GET("/albums", getAlbums)
